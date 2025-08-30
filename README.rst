@@ -3,17 +3,17 @@ mkinitramfs
 
 This project is a Python implementation of `Tomas Matejicek`_'s `Linux Live Kit`_ project.
 
-There are two scripts in this project, called `mkinitramfs.py` and `savechanges.py`, which do not need to be installed, just download and run them directly.
+There are two scripts in this project, called *initramfs_create.py* and *savechanges.py*, which do not need to be installed, just download and run them directly.
 
 .. code-block::
 
     git clone https://github.com/cynthshn/mkinitramfs.git
 
 
-mkinitramfs.py
---------------
+initramfs_create.py
+-------------------
 
-The `mkinitramfs.py` script is used to create the `initrfs.img` file.
+The *initramfs_create.py* script is used to create the *initrfs.img* file.
 
 .. code-block::
 
@@ -24,7 +24,7 @@ The `mkinitramfs.py` script is used to create the `initrfs.img` file.
     -o FILE, --output FILE
                             Place the output into FILE
 
-Then copy the kernel file `vmlinuz` and the `initrfs.img` file to the specified location, and edit the `grub.cfg` file.
+Then copy the kernel file *vmlinuz* and the *initrfs.img* file to the specified location, and edit the *grub.cfg* file.
 
 .. code-block::
 
@@ -36,7 +36,7 @@ Then copy the kernel file `vmlinuz` and the `initrfs.img` file to the specified 
 
 savechanges.py
 --------------
-To boot the system, you also need to create a system image file with the suffix `.sb` which also known as `BUNDLE` files from the current system using the `savechanges.py` script.
+To boot the system, you also need to create a system image file with the suffix *.sb* which also known as *BUNDLE* files from the current system using the *savechanges.py* script.
 
 .. code-block::
 
@@ -50,7 +50,7 @@ To boot the system, you also need to create a system image file with the suffix 
                             Place the output into FILE, the default is "./01-core.sb"
     -y, --yes             Automatic yes to prompts
 
-The system will run in live mode after booting, if you need to keep changes in the system, run the `savechanges.py` script without parameter to generate a snapshot of the current system. It is also possible to use the `--rollback` parameter to roll back the system to the previous snapshot.
+The system will run in live mode after booting, if you need to keep changes in the system, run the *savechanges.py* script without parameter to generate a snapshot of the current system. It is also possible to use the *--rollback* parameter to roll back the system to the previous snapshot.
 
 .. code-block::
 
