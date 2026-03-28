@@ -1,7 +1,9 @@
 mkinitramfs
 ===========
 
-This project is a Python implementation of `Tomas Matejicek`_'s `Linux Live Kit`_ project.
+This project is a Python implementation of `Tomas Matejicek`_'s `Linux Live Kit`_ project with enhanced flexibility. It allows for the specification of the system image location (e.g., 01-core.sb) via the *fresh_os*, *fresh_os.uuid*, and *fresh_os.name* kernel parameters. Furthermore, it enables these bundles to reside on a broader range of file systems, including NTFS as well as flash-friendly formats such as exFAT and F2FS.
+
+Startup scripts *default.py* and storage layout configurations *fstab.txt* are automatically generated in the directory specified by *fresh_os* or *fresh_os.name*. This enables full customization of the boot process on the fly, without repacking the initramfs.
 
 There are two scripts in this project, called *initramfs_create.py* and *savechanges.py*, which do not need to be installed, just download and run them directly.
 
