@@ -1,7 +1,11 @@
 mkinitramfs
 ===========
 
-This project is a Python implementation of `Tomas Matejicek`_'s `Linux Live Kit`_ project with a variety of enhanced features. It allows for the specification of the system image location (e.g., *01-core.sb*) via the *fresh_os=BUNDLES-STORAGE-DISK-UUID/PATH/TO/BUNDLES/DIRECTORY*, *fresh_os.uuid=BUNDLES-STORAGE-DISK-UUID*, and *fresh_os.name=/PATH/TO/BUNDLES/DIRECTORY* kernel parameters. Furthermore, it enables these bundles to reside on a broader range of file systems, including NTFS as well as flash-friendly file systems such as exFAT and F2FS, allowing Linux to co-exist with Windows within a single partition. Startup scripts *default.py* and storage layout configurations *fstab.txt* are automatically generated in the directory specified by *fresh_os* or *fresh_os.name*. This enables full customization of the boot process on the fly, without repacking the initramfs image.
+This project is a Python implementation of `Tomas Matejicek`_'s `Linux Live Kit`_ project with a variety of enhanced features. It allows for the specification of the system image location (e.g., *01-core.sb*) via the *fresh_os=UUID/DIR*, *fresh_os.uuid=UUID*, and *fresh_os.name=/DIR* kernel parameters. Furthermore, it enables these bundles to reside on a broader range of file systems, including NTFS as well as flash-friendly file systems such as exFAT and F2FS, allowing Linux to co-exist with Windows within a single partition.
+
+Startup scripts *default.py* and storage layout configurations *fstab.txt* are automatically generated in the directory specified by *fresh_os* or *fresh_os.name*. This enables a fully customizable boot flow without repacking the initramfs image.
+
+The operating system reverts to a pristine state after every reboot, providing a failsafe environment for unrestricted experimentation. Complementing this stateless design,, users can control system states (such as changes in */usr*) using system snapshots, and configure the persistent storage of XDG user directories (like *Desktop* or *Documents*) via *fstab.txt*.
 
 There are two scripts in this project, called *initramfs_create.py* and *savechanges.py*, which do not need to be installed, just download and run them directly.
 
