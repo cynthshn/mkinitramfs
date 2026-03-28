@@ -93,6 +93,8 @@ Startup Script Example (Automatically generated as *default.py*, fully customiza
         with open(f'{args["home"]}/fstab.txt') as f_in:
             with open('/memory/union/etc/fstab', 'w') as f_out:
                 f_out.write(f_in.read())
+
+        # Populate the system with management utilities (e.g., savechanges)
         bootstraplib.install_scripts()
 
 .. _Tomas Matejicek: https://github.com/Tomas-M
