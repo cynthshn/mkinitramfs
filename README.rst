@@ -76,19 +76,19 @@ The system will run in live mode after booting, if you need to keep changes in t
 
 Startup Script Example (Automatically generated as *default.py*, fully customizable):
 
-.. code-block::
+.. code-block:: python
 
     import bootstraplib
-    
+
     def main():
         args = bootstraplib.get_arguments()
-    
+
         # Locate system images and snapshot bundles
         bundles = bootstraplib.find_sorted_bundles(args['home'])
-    
+
         # Mount sorted bundles and initialize the Union File System
         bootstraplib.mount_sorted_bundles_and_init_union(bundles)
-    
+
         # Apply the customizable storage layout
         with open(f'{args["home"]}/fstab.txt') as f_in:
             with open('/memory/union/etc/fstab', 'w') as f_out:
