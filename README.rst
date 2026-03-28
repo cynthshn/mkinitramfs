@@ -5,7 +5,7 @@ This project is a Python implementation of `Tomas Matejicek`_'s `Linux Live Kit`
 
 Startup scripts *default.py* and storage layout configurations *fstab.txt* are automatically generated in the directory specified by *fresh_os* or *fresh_os.name*. This enables a fully customizable boot flow without repacking the initramfs image.
 
-The operating system reverts to a pristine state after every reboot, providing a failsafe environment for unrestricted experimentation. Complementing this stateless design,, users can control system states (such as changes in */usr*) using system snapshots, and configure the persistent storage of XDG user directories (like *Desktop* or *Documents*) via *fstab.txt*.
+The operating system reverts to a pristine state after every reboot, providing a failsafe environment for unrestricted experimentation. Complementing this stateless design, users can control system states (such as changes in */usr*) using system snapshots, and configure the persistent storage of XDG user directories (like *Desktop* or *Documents*) via *fstab.txt*.
 
 There are two scripts in this project, called *initramfs_create.py* and *savechanges.py*, which do not need to be installed, just download and run them directly.
 
@@ -73,6 +73,27 @@ The system will run in live mode after booting, if you need to keep changes in t
     -l, --list            List all snapshots.
     -r ..., --rollback ...
                             Withdraw a previous snapshot.
+
+Startup Script Example (Automatically generated as *default.py*, fully customizable):
+
+.. code-block::
+
+    import bootstraplib
+    
+    def main():
+        args = bootstraplib.get_arguments()
+    
+        # Locate system images and snapshot bundles
+        bundles = bootstraplib.find_sorted_bundles(args['home'])
+    
+        # Mount sorted bundles and initialize the Union File System
+        bootstraplib.mount_sorted_bundles_and_init_union(bundles)
+    
+        # Apply the customizable storage layout
+        with open(f'{args["home"]}/fstab.txt') as f_in:
+            with open('/memory/union/etc/fstab', 'w') as f_out:
+                f_out.write(f_in.read())
+        bootstraplib.install_scripts()
 
 .. _Tomas Matejicek: https://github.com/Tomas-M
 .. _Linux Live Kit: https://www.linux-live.org/
