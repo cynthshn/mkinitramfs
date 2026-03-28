@@ -198,7 +198,7 @@ def initialize(home):
     else:
         options = f'uid={uid},gid={gid},dmask=0027,fmask=0137'
     with open(f'{home}/default.py', 'w') as f:
-        f.write(fstab_py_in.replace('{options}', options))
+        f.write(default_py_in.replace('{options}', options))
 
 def get_arguments():
     with open('/memory/arguments') as f:
@@ -397,7 +397,7 @@ LIBC_fork = LIBC.func('i', 'fork', '')
 LIBC_pipe = LIBC.func('i', 'pipe', 'p')
 LIBC_system = LIBC.func('i', 'system', 's')
 LIBC_waitpid = LIBC.func('i', 'waitpid', 'ipi')
-fstab_py_in = '''#!/bin/micropython\n
+default_py_in = '''#!/bin/micropython\n
 import bootstraplib
 
 def main():
